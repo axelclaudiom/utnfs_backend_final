@@ -79,8 +79,8 @@ Asegúrate de tener instalado lo siguiente:
 Nota: Las rutas de artículos requieren un token JWT válido en el encabezado de autorización.
 
 ## Relación Artículo-Proveedor
-    Los artículos están relacionados con proveedores mediante el campo proveedor en el esquema de artículos.
-    Las consultas a artículos incluyen automáticamente la información del proveedor asociado mediante la función populate.
+Los artículos están relacionados con proveedores mediante el campo proveedor en el esquema de artículos.
+Las consultas a artículos incluyen automáticamente la información del proveedor asociado mediante la función populate.
 
 ## Pruebas con Postman
 Puedes probar la API utilizando Postman. Importa la colección de Postman desde el siguiente enlace:
