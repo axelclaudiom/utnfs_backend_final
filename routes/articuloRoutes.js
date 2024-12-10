@@ -19,4 +19,17 @@ router.get('/', authMiddleware, async (req, res) => {
   res.json(articulos);
 });
 
+// Obtener un artículo específico por ID
+router.get('/:id', authMiddleware, async (req, res) => {
+  try {
+    const articulo = await Articulo.findById(req.params.id);
+    if (!articulo) {
+      return res.status(404).json({ error: 'Artículo no encontrado' });
+    }
+    res.json(articulo);
+  } catch (error) {
+    res.status(400).json({ error: 'ID inválido' });
+  }
+});
+
 module.exports = router;
