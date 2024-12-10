@@ -1,14 +1,16 @@
-# API RESTful de Gestión de Artículos
+# API RESTful de Gestión de Artículos y Proveedores
 
-Este proyecto es una API RESTful desarrollada con **Node.js**, **Express**, y **MongoDB** para la gestión de artículos. Incluye operaciones CRUD completas, autenticación de usuarios mediante JWT, validación de datos, y seguridad básica.
+Este proyecto es una API RESTful desarrollada con **Node.js**, **Express**, y **MongoDB** para la gestión de artículos y proveedores. Incluye operaciones CRUD completas, autenticación de usuarios mediante JWT, validación de datos, y seguridad básica.
 
 ## Características
 
 - **Autenticación de usuarios**:
   - Registro de usuarios con contraseñas hasheadas.
   - Emisión de tokens JWT para proteger rutas.
-- **Gestión de artículos**:
-  - Operaciones CRUD: crear, leer (individual o lista completa), actualizar, y eliminar artículos.
+- **Gestión de artículos y proveedores**:
+  - Operaciones CRUD para artículos y proveedores.
+  - Relación entre artículos y proveedores.
+  - Consulta de artículos con información del proveedor (similar a un "inner join").
 - **Seguridad**:
   - Protección de rutas sensibles con JWT.
   - Uso de cabeceras de seguridad con Helmet.
@@ -29,8 +31,8 @@ Asegúrate de tener instalado lo siguiente:
 
 1. Clona este repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/tu-repositorio.git
-   cd tu-repositorio
+   git clone https://github.com/axelclaudiom/utnfs_backend_final.git
+   cd utnfs_backend_final
    ```
 
 2. Instala las dependencias:
@@ -60,6 +62,14 @@ Asegúrate de tener instalado lo siguiente:
 - **Autenticación**
 - `POST /api/auth/register`: Registra un nuevo usuario.
 - `POST /api/auth/login`: Inicia sesión y devuelve un token JWT.
+
+- **Proveedores**
+- `POST /api/proveedores`: Crea un nuevo proveedor.
+- `GET /api/proveedores`: Obtiene todos los proveedores.
+- `GET /api/proveedores/:id`: Obtiene un proveedor por su ID.
+- `PUT /api/proveedores/:id`: Actualiza un proveedor por su ID.
+- `DELETE /api/proveedores/:id`: Elimina un proveedor por su ID.
+
 - **Artículos**
 - `POST /api/articulos`: Crea un nuevo artículo.
 - `GET /api/articulos`: Obtiene todos los artículos.
@@ -67,6 +77,10 @@ Asegúrate de tener instalado lo siguiente:
 - `PUT /api/articulos/:id`: Actualiza un artículo por su ID.
 - `DELETE /api/articulos/:id`: Elimina un artículo por su ID.
 Nota: Las rutas de artículos requieren un token JWT válido en el encabezado de autorización.
+
+## Relación Artículo-Proveedor
+    Los artículos están relacionados con proveedores mediante el campo proveedor en el esquema de artículos.
+    Las consultas a artículos incluyen automáticamente la información del proveedor asociado mediante la función populate.
 
 ## Pruebas con Postman
 Puedes probar la API utilizando Postman. Importa la colección de Postman desde el siguiente enlace:
@@ -82,15 +96,16 @@ Puedes probar la API utilizando Postman. Importa la colección de Postman desde 
     │   └── errorHandler.js     # Middleware para manejar errores
     ├── models/
     │   ├── Articulo.js         # Modelo de artículo
+    │   ├── Proveedor.js        # Modelo de proveedor
     │   └── User.js             # Modelo de usuario
     ├── routes/
     │   ├── authRoutes.js       # Rutas de autenticación
-    │   └── articuloRoutes.js   # Rutas de artículos
+    │   ├── articuloRoutes.js   # Rutas de artículos
+    │   └── proveedorRoutes.js  # Rutas de proveedores
     ├── .env                    # Variables de entorno
     ├── index.js                # Archivo principal del servidor
     ├── package.json            # Configuración del proyecto
     └── README.md               # Este archivo
-
     ```
 
 ## Tecnologías utilizadas

@@ -13,19 +13,21 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 });
 
-// Obtener todos los artículos
+// Obtener todos los articulos con su proveedor
 router.get('/', authMiddleware, async (req, res) => {
-  const articulos = await Articulo.find();
-  res.json(articulos);
+  try {
+    const articulos = await Articulo.find().populate('proveedor');
+    res.json(articulos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
-// Obtener un artículo específico por ID
+// Obtener un artículo específico con su proveedor
 router.get('/:id', authMiddleware, async (req, res) => {
   try {
-    const articulo = await Articulo.findById(req.params.id);
-    if (!articulo) {
-      return res.status(404).json({ error: 'Artículo no encontrado' });
-    }
+    const articulo = await Articulo.findById(req.params.id).populate('proveedor');
+    if (!articulo) return res.status(404).json({ error: 'Artículo no encontrado' });
     res.json(articulo);
   } catch (error) {
     res.status(400).json({ error: 'ID inválido' });
