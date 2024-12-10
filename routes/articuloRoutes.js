@@ -32,4 +32,15 @@ router.get('/:id', authMiddleware, async (req, res) => {
   }
 });
 
+// Actualizar artículo
+router.put('/:id', authMiddleware, async (req, res) => {
+  try {
+    const articulo = await Articulo.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!articulo) return res.status(404).json({ error: 'Artículo no encontrado' });
+    res.json(articulo);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = router;
