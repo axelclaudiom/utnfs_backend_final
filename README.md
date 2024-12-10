@@ -39,11 +39,11 @@ Asegúrate de tener instalado lo siguiente:
    ```
 
 3. Crea un archivo .env en la raíz del proyecto con las siguientes variables:
-  ```bash
-    PORT=5000
-    MONGO_URI=mongodb+srv://<usuario>:<contraseña>@<cluster>.mongodb.net/<nombre_base>?retryWrites=true&w=majority
-    JWT_SECRET=clave_secreta_super_segura
-   ```
+    ```bash
+     PORT=5000
+     MONGO_URI=mongodb+srv://<usuario>:<contraseña>@<cluster>.mongodb.net/<nombre_base>?retryWrites=true&w=majority
+     JWT_SECRET=clave_secreta_super_segura
+     ```
 
 4. Inicia el servidor:
     - Modo desarrollo:
@@ -93,7 +93,7 @@ Puedes probar la API utilizando Postman. Importa la colección de Postman desde 
 
     ```
 
-##Tecnologías utilizadas
+## Tecnologías utilizadas
 - **Backend**: Node.js, Express
 - **Base de datos**: MongoDB (Atlas)
 - **Autenticación**: JSON Web Tokens (JWT)
