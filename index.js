@@ -8,9 +8,7 @@ const articuloRoutes = require('./routes/articuloRoutes');
 const app = express();
 connectDB();
 
-app.get('/', (req, res) => {
-  res.send('API en construcción');
-});
+app.use(express.json());
 
 // Rutas
 app.use('/api/auth', authRoutes);

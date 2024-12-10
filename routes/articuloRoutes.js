@@ -13,4 +13,10 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 });
 
+// Obtener todos los artículos
+router.get('/', authMiddleware, async (req, res) => {
+  const articulos = await Articulo.find();
+  res.json(articulos);
+});
+
 module.exports = router;
